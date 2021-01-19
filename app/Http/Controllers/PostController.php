@@ -12,10 +12,10 @@ class PostController extends Controller
     {
         $this->middleware(['auth']);
     }
-    
+
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::paginate(20);
        return view('posts.index',compact('posts'));
     }
     public function store(Request $request)
