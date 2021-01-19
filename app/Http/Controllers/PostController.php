@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['user','likes'])->paginate(20);
+        $posts = Post::latest()->with(['user','likes'])->paginate(20);
        return view('posts.index',compact('posts'));
     }
     public function store(Request $request)
@@ -18,6 +18,14 @@ class PostController extends Controller
             "body" => "required",
         ]);
         $request->user()->posts()->create($request->only('body'));
+        return back();
+    }
+
+
+    public function destroy(Post $post)
+    {
+        $this->authorize('delete',$post);
+        $post->delete();
         return back();
     }
     
