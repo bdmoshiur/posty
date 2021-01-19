@@ -3,8 +3,8 @@
     <div class="flex justify-center">
         <div class="w-8/12">
             <div class="p-6">
-                <h2 class="tex-2xl font-medium mb-1">{{ $user->name }}</h2>
-                <p>Posted {{ $posts->count() }} {{ Str::plural('post', $posts->count()) }}</p>
+                <h2 class="text-2xl font-medium mb-1">{{ $user->name }}</h2>
+                <p>Posted {{ $posts->count() }} {{ Str::plural('post', $posts->count()) }} and Received {{ $user->receivedLikes->count() }} Likes</p>
             </div>
             <div class="bg-white p-6 rounded-lg">
                 @if ($posts->count())
